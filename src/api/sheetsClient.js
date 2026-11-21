@@ -1,5 +1,7 @@
-const API_URL = '/api-sheets';
+const APPS_SCRIPT_URL =
+  'https://script.google.com/macros/s/AKfycby1a3oBOFUZVWdmEIbjhZ-gSIISmRC7mNIFQkLq97lS-1Ou7GgUapbp3xXz7U6UDBSK3w/exec';
 
+const API_URL = import.meta.env.DEV ? '/api-sheets' : APPS_SCRIPT_URL;
 export async function obtenerDatos(tabla) {
   try {
     const res = await fetch(`${API_URL}?tabla=${encodeURIComponent(tabla)}`, {
