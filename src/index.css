@@ -1,0 +1,218 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 222 47% 11%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 18 88% 40%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 74% 42%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 18 88% 40%;
+    --chart-1: 18 88% 40%;
+    --chart-2: 160 84% 30%;
+    --chart-3: 222 47% 11%;
+    --chart-4: 32 95% 44%;
+    --chart-5: 215 16% 47%;
+    --radius: 0.25rem;
+    --font-heading: "Playfair Display", Georgia, "Times New Roman", serif;
+    --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+    --font-body: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sidebar-background: 222 47% 11%;
+    --sidebar-foreground: 210 40% 96%;
+    --sidebar-primary: 18 88% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 217 33% 17%;
+    --sidebar-accent-foreground: 210 40% 96%;
+    --sidebar-border: 217 33% 20%;
+    --sidebar-ring: 18 88% 40%;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 217 33% 14%;
+    --card-foreground: 210 40% 98%;
+    --popover: 217 33% 14%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 18 88% 45%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 74% 42%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 217 33% 20%;
+    --input: 217 33% 20%;
+    --ring: 18 88% 45%;
+    --chart-1: 18 88% 50%;
+    --chart-2: 160 70% 40%;
+    --chart-3: 210 40% 80%;
+    --chart-4: 32 95% 55%;
+    --chart-5: 215 20% 65%;
+    --sidebar-background: 222 47% 11%;
+    --sidebar-foreground: 210 40% 96%;
+    --sidebar-primary: 18 88% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 217 33% 17%;
+    --sidebar-accent-foreground: 210 40% 96%;
+    --sidebar-border: 217 33% 20%;
+    --sidebar-ring: 18 88% 40%;
+  }
+
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  ::selection {
+    @apply bg-ochre text-white;
+  }
+}
+
+@layer utilities {
+  .eyebrow {
+    @apply font-mono text-[10px] uppercase tracking-[0.32em] text-muted-foreground;
+  }
+}
+
+/* Tarjetas, modales, paneles, inputs y selects redondeados con sombra */
+.card,
+[class*="card"],
+[class*="modal"],
+[class*="panel"],
+[class*="box"],
+input,
+select,
+textarea {
+  border-radius: 18px !important;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.14),
+              0 4px 10px -3px rgba(15, 23, 42, 0.08) !important;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-radius 0.18s ease !important;
+}
+
+/* Todos los botones y enlaces tipo botón: redondeados, sombra y texto centrado */
+button,
+[role="button"],
+a[href],
+[class*="btn"],
+[class*="button"] {
+  border-radius: 9999px !important;
+  box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.22),
+              0 3px 8px -2px rgba(15, 23, 42, 0.12) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease !important;
+  cursor: pointer;
+}
+
+button:hover,
+[role="button"]:hover,
+a[href]:hover,
+[class*="btn"]:hover,
+[class*="button"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 14px 26px -4px rgba(15, 23, 42, 0.28),
+              0 6px 12px -3px rgba(15, 23, 42, 0.16) !important;
+}
+
+button:active,
+[role="button"]:active,
+a[href]:active,
+[class*="btn"]:active,
+[class*="button"]:active {
+  transform: translateY(1px) scale(0.98) !important;
+  box-shadow: 0 4px 10px -2px rgba(15, 23, 42, 0.2) !important;
+}
+
+/* Enlaces de navegación y logo de la cabecera sin sombra ni fondo difuminado */
+header nav a,
+nav a,
+[class*="nav-link"],
+header [class*="logo"],
+nav [class*="logo"] {
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
+  background: transparent !important;
+}
+
+header nav a:hover,
+nav a:hover,
+[class*="nav-link"]:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* Botón RESERVAR en naranja intenso con texto blanco */
+header a[href*="reserv" i],
+header a[href*="espacio" i]:last-of-type,
+header [class*="reservar" i],
+header a.bg-accent,
+header button.bg-accent,
+a[class*="reservar" i] {
+  background-color: hsl(var(--accent)) !important;
+  color: hsl(var(--accent-foreground)) !important;
+  box-shadow: 0 8px 20px -4px rgba(194, 65, 12, 0.35),
+              0 3px 8px -2px rgba(15, 23, 42, 0.14) !important;
+}
+
+header img,
+nav img,
+[class*="logo"] img {
+  border-radius: 12px !important;
+  box-shadow: none !important;
+}
+
+/* Ocultar el botón de menú de tres rayas en ordenador */
+@media (min-width: 769px) {
+  header button[aria-label*="menu" i],
+  header button[aria-label*="menú" i],
+  header button[class*="hamburger" i],
+  header button[class*="burger" i],
+  header button[class*="menu-btn" i],
+  header button[class*="mobile" i],
+  nav button[class*="hamburger" i],
+  nav button[class*="burger" i],
+  nav button[class*="menu" i],
+  header > div > button:last-child,
+  header nav > button:last-child {
+    display: none !important;
+  }
+}
+
+/* Mantener las zonas del plano cuadradas/rectangulares con esquina suave (no píldora/óvalo) */
+button.zona-plano,
+button.zona-plano:hover,
+button.zona-plano:active {
+  border-radius: 14px !important;
+}

@@ -1,0 +1,97 @@
+{
+  "name": "Espacio",
+  "type": "object",
+  "properties": {
+    "nombre": {
+      "type": "string",
+      "description": "Nombre visible del espacio"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "Puesto",
+        "Despacho",
+        "Sala de reuniones",
+        "Sala de formaci\u00f3n"
+      ],
+      "enumColors": [
+        "blue",
+        "purple",
+        "green",
+        "yellow"
+      ],
+      "default": "Puesto"
+    },
+    "descripcion": {
+      "type": "string",
+      "description": "Descripci\u00f3n del espacio"
+    },
+    "capacidad": {
+      "type": "number",
+      "description": "N\u00famero de personas"
+    },
+    "precio_hora": {
+      "type": "number",
+      "description": "Precio por hora en euros"
+    },
+    "servicios": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Servicios incluidos"
+    },
+    "fotos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "URLs de las fotos"
+    },
+    "plano_x": {
+      "type": "number",
+      "description": "Posici\u00f3n horizontal en el plano (porcentaje)"
+    },
+    "plano_y": {
+      "type": "number",
+      "description": "Posici\u00f3n vertical en el plano (porcentaje)"
+    },
+    "plano_ancho": {
+      "type": "number",
+      "description": "Ancho en el plano (porcentaje)"
+    },
+    "plano_alto": {
+      "type": "number",
+      "description": "Alto en el plano (porcentaje)"
+    },
+    "orden": {
+      "type": "number",
+      "default": 0
+    },
+    "activo": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "nombre"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "name": "Configuracion",
+  "type": "object",
+  "properties": {
+    "nombre_negocio": {
+      "type": "string"
+    },
+    "direccion": {
+      "type": "string"
+    },
+    "telefono": {
+      "type": "string"
+    },
+    "email_contacto": {
+      "type": "string"
+    },
+    "email_notificaciones": {
+      "type": "string",
+      "description": "Email que recibe las solicitudes de reserva"
+    },
+    "hora_apertura": {
+      "type": "string",
+      "default": "08:00"
+    },
+    "hora_cierre": {
+      "type": "string",
+      "default": "20:00"
+    },
+    "texto_bienvenida": {
+      "type": "string"
+    }
+  },
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

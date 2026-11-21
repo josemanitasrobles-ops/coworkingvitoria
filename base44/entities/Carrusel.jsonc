@@ -1,0 +1,48 @@
+{
+  "name": "Carrusel",
+  "type": "object",
+  "properties": {
+    "imagen_url": {
+      "type": "string"
+    },
+    "kicker": {
+      "type": "string",
+      "description": "Texto peque\u00f1o superior"
+    },
+    "titulo": {
+      "type": "string"
+    },
+    "subtitulo": {
+      "type": "string"
+    },
+    "orden": {
+      "type": "number",
+      "default": 0
+    },
+    "activo": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "imagen_url"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
