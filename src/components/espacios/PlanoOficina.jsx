@@ -67,23 +67,35 @@ const ESTILOS_ESTADO = {
   },
 };
 
+function normalizarTexto(texto) {
+  return String(texto || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim()
+    .toLowerCase();
+}
+
 export default function PlanoOficina({ espacios = [], estados = {}, onSelect }) {
   const resolverEspacio = (zona) => {
+    const nombreZonaNorm = normalizarTexto(zona.nombre);
+    const idZonaNorm = normalizarTexto(zona.id);
+
     const match = espacios.find((e) => {
-      const idIguales = String(e.id || "").toLowerCase() === zona.id.toLowerCase();
-      const primeraPalabra = zona.nombre.toLowerCase().split(" ")[0];
-      const nombreCoincide = String(e.nombre || "").toLowerCase().includes(primeraPalabra);
-      return idIguales || nombreCoincide;
+      const idEspacioNorm = normalizarTexto(e.id);
+      const nombreEspacioNorm = normalizarTexto(e.nombre);
+      return idEspacioNorm === idZonaNorm || nombreEspacioNorm === nombreZonaNorm;
     });
 
-    return (
-      match || {
-        id: zona.id,
-        nombre: zona.nombre,
-        capacidad: 1,
-        precio_hora: 0,
-      }
-    );
+    if (match) {
+      return match;
+    }
+
+    return {
+      id: zona.id,
+      nombre: zona.nombre,
+      capacidad: 1,
+      precio_hora: 0,
+    };
   };
 
   return (
@@ -103,7 +115,7 @@ export default function PlanoOficina({ espacios = [], estados = {}, onSelect }) 
 
       {ZONAS_PLANO.map((zona) => {
         const espacio = resolverEspacio(zona);
-        const estado = estados[espacio.id] || "libre";
+        const estado = estados[espacio.id] || estados[zona.id] || "libre";
         const visual = ESTILOS_ESTADO[estado] || ESTILOS_ESTADO.libre;
 
         return (
@@ -128,7 +140,6 @@ export default function PlanoOficina({ espacios = [], estados = {}, onSelect }) 
               gap: "4px",
               padding: "6px",
             }}
-          
           >
             <span
               className="bg-white/95 px-2.5 py-0.5 text-[11px] font-semibold text-slate-900"
