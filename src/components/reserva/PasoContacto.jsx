@@ -75,6 +75,16 @@ export default function PasoContacto({ valores, onCambio, onSubmit, enviando, er
           y el tratamiento de mis datos para gestionar esta reserva.
         </Label>
       </div>
+      <div className="flex items-start gap-3">
+  <Checkbox
+    id="recordatorio_7am"
+    checked={Boolean(valores.recordatorio_7am)}
+    onCheckedChange={(v) => onCambio({ ...valores, recordatorio_7am: Boolean(v) })}
+  />
+  <Label htmlFor="recordatorio_7am" className="text-xs leading-relaxed text-muted-foreground cursor-pointer">
+    Deseo que se me notifique por correo un día antes a las 7:00
+  </Label>
+</div>
 
       {error && (
         <div className="flex gap-3 border border-ocupado/30 bg-red-50 p-4 text-sm text-red-900">

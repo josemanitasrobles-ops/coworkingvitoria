@@ -68,6 +68,7 @@ function ReservarPage() {
     telefono: "",
     email: "",
     privacidad: false,
+    recordatorio_7am: false,
   });
 
   const listaFranjas = useMemo(
@@ -152,6 +153,7 @@ function ReservarPage() {
           telefono: contacto.telefono.trim(),
           email: contacto.email.trim(),
           acepta_privacidad: contacto.privacidad,
+          recordatorio_7am: Boolean(contacto.recordatorio_7am),
         },
       });
 
@@ -172,6 +174,7 @@ function ReservarPage() {
         hora_fin: fin,
         precio_total: res?.precio_total ?? total,
         estado: "pendiente",
+        recordatorio_7am: Boolean(contacto.recordatorio_7am),
       });
       setPaso(3);
     } catch (e) {
