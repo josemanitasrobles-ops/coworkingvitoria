@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthedRouteImport } from './routes/_authed'
 import { Route as ContactoRouteImport } from './routes/contacto'
+import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as EspaciosRouteImport } from './routes/espacios'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as LoginRouteImport } from './routes/login'
@@ -38,6 +39,11 @@ const AuthedRoute = AuthedRouteImport.update({
 const ContactoRoute = ContactoRouteImport.update({
   id: '/contacto',
   path: '/contacto',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiesRoute = CookiesRouteImport.update({
+  id: '/cookies',
+  path: '/cookies',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EspaciosRoute = EspaciosRouteImport.update({
@@ -110,6 +116,7 @@ const AuthedAdminEspaciosRoute = AuthedAdminEspaciosRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contacto': typeof ContactoRoute
+  '/cookies': typeof CookiesRoute
   '/espacios': typeof EspaciosRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
@@ -127,6 +134,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contacto': typeof ContactoRoute
+  '/cookies': typeof CookiesRoute
   '/espacios': typeof EspaciosRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
@@ -145,6 +153,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authed': typeof AuthedRouteWithChildren
   '/contacto': typeof ContactoRoute
+  '/cookies': typeof CookiesRoute
   '/espacios': typeof EspaciosRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
@@ -164,6 +173,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/contacto'
+    | '/cookies'
     | '/espacios'
     | '/forgot-password'
     | '/login'
@@ -181,6 +191,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/contacto'
+    | '/cookies'
     | '/espacios'
     | '/forgot-password'
     | '/login'
@@ -198,6 +209,7 @@ export interface FileRouteTypes {
     | '/'
     | '/_authed'
     | '/contacto'
+    | '/cookies'
     | '/espacios'
     | '/forgot-password'
     | '/login'
@@ -217,6 +229,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthedRoute: typeof AuthedRouteWithChildren
   ContactoRoute: typeof ContactoRoute
+  CookiesRoute: typeof CookiesRoute
   EspaciosRoute: typeof EspaciosRoute
   ForgotPasswordRoute: typeof ForgotPasswordRoute
   LoginRoute: typeof LoginRoute
@@ -248,6 +261,13 @@ declare module '@tanstack/react-router' {
       path: '/contacto'
       fullPath: '/contacto'
       preLoaderRoute: typeof ContactoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookies': {
+      id: '/cookies'
+      path: '/cookies'
+      fullPath: '/cookies'
+      preLoaderRoute: typeof CookiesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/espacios': {
@@ -377,6 +397,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthedRoute: AuthedRouteWithChildren,
   ContactoRoute: ContactoRoute,
+  CookiesRoute: CookiesRoute,
   EspaciosRoute: EspaciosRoute,
   ForgotPasswordRoute: ForgotPasswordRoute,
   LoginRoute: LoginRoute,

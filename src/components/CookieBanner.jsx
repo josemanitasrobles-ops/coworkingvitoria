@@ -6,16 +6,21 @@ export default function CookieBanner({ onOpenPrivacy }) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    const handleOpen = () => setVisible(true);
+    window.addEventListener("open-cookie-banner", handleOpen);
+
     const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved === "accepted" || saved === "rejected") {
-      return;
+    let timer;
+    if (saved !== "accepted" && saved !== "rejected") {
+      timer = setTimeout(() => {
+        setVisible(true);
+      }, 3000);
     }
 
-    const timer = setTimeout(() => {
-      setVisible(true);
-    }, 3000);
-
-    return () => clearTimeout(timer);
+    return () => {
+      window.removeEventListener("open-cookie-banner", handleOpen);
+      if (timer) clearTimeout(timer);
+    };
   }, []);
 
   const handleDecision = (decision) => {

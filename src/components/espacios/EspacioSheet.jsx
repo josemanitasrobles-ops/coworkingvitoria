@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Check, Users, ArrowRight, ImageOff } from "lucide-react";
+import { Check, Users, ArrowRight, ImageOff, X } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -46,7 +46,17 @@ export default function EspacioSheet({ espacio, estado = "libre", fecha, hora, f
     <Sheet open={abierto} onOpenChange={(v) => !v && onClose()}>
       <SheetContent className="w-full overflow-y-auto border-l border-border bg-white p-0 sm:max-w-[480px]">
         {espacio && (
-          <div>
+          <div className="relative">
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label="Cerrar información del espacio"
+              className="fixed right-4 top-4 z-50 inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white/95 px-3.5 py-2 text-xs font-semibold text-ink shadow-md backdrop-blur transition hover:-translate-y-0.5 hover:bg-white sm:absolute"
+            >
+              <X className="h-4 w-4" />
+              <span>Cerrar</span>
+            </button>
+
             <div className="relative aspect-[4/3] w-full bg-secondary">
               {fotos.length ? (
                 <Image

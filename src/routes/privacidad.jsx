@@ -1,5 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
-import SiteHeader from "@/components/site/SiteHeader";
+import { createFileRoute, useRouter } from "@tanstack/react-router";
+import { ArrowLeft } from "lucide-react";import SiteHeader from "@/components/site/SiteHeader";
 import SiteFooter from "@/components/site/SiteFooter";
 import usePublicConfig from "@/hooks/usePublicConfig";
 
@@ -50,12 +50,28 @@ const BLOQUES = [
 ];
 
 function PrivacidadPage() {
+  const router = useRouter();
+
+const handleVolver = () => {
+  if (router.history.canGoBack()) {
+    router.history.back();
+  } else {
+    router.navigate({ to: "/" });
+  }
+};
   const config = usePublicConfig();
 
   return (
     <div className="min-h-screen bg-silver">
       <SiteHeader nombre={config.nombre_negocio} />
-      <main className="pt-[72px] md:pt-20">
+      <main className="pt-[72px] md:pt-20"><button
+  type="button"
+  onClick={handleVolver}
+  className="mb-8 inline-flex items-center gap-2 rounded-full border border-black/15 bg-white px-4 py-2 text-xs font-medium text-ink shadow-sm transition hover:-translate-y-0.5 hover:bg-black/5"
+>
+  <ArrowLeft className="h-3.5 w-3.5" />
+  Volver atrás
+</button>
         <div className="mx-auto max-w-3xl px-5 py-14 md:px-10 md:py-20">
           <p className="eyebrow">Legal</p>
           <h1 className="mt-4 font-display text-4xl font-light leading-tight text-ink sm:text-5xl">

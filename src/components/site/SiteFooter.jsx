@@ -7,6 +7,10 @@ export default function SiteFooter({ config = {} }) {
   const telefono = config.telefono || "+34 945 000 000";
   const email = config.email_contacto || "hola@nucleovitoria.com";
 
+  const handleOpenCookies = () => {
+    window.dispatchEvent(new Event("open-cookie-banner"));
+  };
+
   return (
     <footer className="border-t border-white/10 bg-ink text-white">
       <div className="mx-auto max-w-7xl px-5 py-16 md:px-10 md:py-20">
@@ -67,8 +71,8 @@ export default function SiteFooter({ config = {} }) {
                 </Link>
               </li>
               <li>
-                <Link to="/login" className="text-white/50 hover:text-white">
-                  Acceso equipo
+                <Link to="/cookies" className="hover:text-white">
+                  Política de cookies
                 </Link>
               </li>
             </ul>
