@@ -18,7 +18,7 @@ export default defineConfig({
         rewrite: (p) =>
           p.replace(
             /^\/api-sheets/,
-            '/macros/s/AKfycbwJ9aUxJljsml0SB6BulrU7sJmbt37nMo98bLE5lpTwtY_TtzGctCrl2YVdpYKrSMuXmQ/exec'
+            '/macros/s/AKfycbzdQG-lOYDZqEGHKrSYYndAnxSmqvJM35bFbFhNsjOqRswcNfuFwQnsJILKSO3cF7RkBg/exec'
           ),
       },
     },
